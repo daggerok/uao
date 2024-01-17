@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# prerequisites
+is_unzip=`command -v unzip`
+if [[ -z "$is_unzip" ]] ; then
+  echo "can't find command unzip"
+  exit -1
+fi
+
 # to enable loggin, use command: DEBUG=y uao ...
 debug=${DEBUG:-n}
 function log {
