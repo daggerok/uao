@@ -16,19 +16,13 @@ if [[ -z "$archive" ]] ; then
   exit 1
 fi
 
-base="$(basename -- $1)"
-log "base: $base"
-
-extension=${archive##*.}
-log "extension: $extension"
-if [[ ".$extension" != ".zip" ]] ; then
-  echo "only .zip archive is supported"
-  exit 2
-fi
-
-dir="${archive%.*}"
+dir=`basename "$archive" .zip`
 log "dir: $dir"
 
+if [[ "$dir" == *.zip ]] ; then
+  echo "cannot parse directory for $archive arhive"
+  exit 2
+fi
 if [[ -d "$dir" ]] ; then
   echo "directory $dir already exists"
   exit 3
@@ -37,9 +31,11 @@ fi
 parent="$(dirname "$archive")"
 log "parent: $parent"
 
-log "unzip -d $parent/ $archive"
-unzip -d "$parent" "$archive"
+log "mkdir $parent/$dir"
+mkdir "$parent/$dir"
 
-log "idea $dir"
-idea $dir/
+log "unzip -d $parent/$dir $archive"
+unzip -d "$parent/$dir" "$archive"
 
+log "idea $parent/$dir/"
+idea "$parent/$dir/"
