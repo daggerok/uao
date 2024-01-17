@@ -10,10 +10,16 @@ function log {
 }
 
 # prerequisites
-is_unzip=`command -v unzip`
-log "is_unzip: $is_unzip"
-if [[ -z "$is_unzip" ]] ; then
+unzip_path=`command -v unzip`
+log "unzip_path: $unzip_path"
+if [[ -z "$unzip_path" ]] ; then
   echo "can't find command unzip"
+  exit -1
+fi
+idea_path=`command -v idea`
+log "idea_path: $idea_path"
+if [[ -z "$idea_path" ]] ; then
+  echo "can't find command idea"
   exit -1
 fi
 
