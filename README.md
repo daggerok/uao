@@ -29,4 +29,20 @@ echo 'export PATH="$PATH:$HOME/.bin"' >> ~/.bash_profile # or ~/.bashrc # or ~/.
   uao ~/Downloads/demo.zip
   ```
 
+## example
+
+```bash
+# install spring boot:
+brew tap spring-io/tap
+brew reinstall spring-boot
+
+# create spring-boot project demo.zip archive:
+mkdir /tmp/123
+cd /tmp/123
+spring init
+
+# test uao script:
+uao ./demo.zip
+```
+
 Enjoy ;)
